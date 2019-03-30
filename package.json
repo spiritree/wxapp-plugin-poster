@@ -1,0 +1,30 @@
+{
+  "name": "wxapp-plugin-poster",
+  "version": "0.0.1",
+  "description": "小程序海报组件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "./node_modules/typescript/bin/tsc",
+    "tsc": "node ./node_modules/typescript/lib/tsc.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiritree/wxapp-plugin-poster.git"
+  },
+  "keywords": [
+    "小程序"
+  ],
+  "author": "spiritree",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spiritree/wxapp-plugin-poster/issues"
+  },
+  "homepage": "https://github.com/spiritree/wxapp-plugin-poster#readme",
+  "files": [
+    "miniprogram_dist"
+  ],
+  "devDependencies": {
+    "typescript": "^3.3.3333"
+  }
+}
