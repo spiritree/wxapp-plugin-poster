@@ -5021,13 +5021,13 @@ wx.chooseImage({
       /** 在目标画布上绘制图像的高度，允许对绘制的图像进行缩放 */
       dHeight: number,
       /** 源图像的矩形选择框的左上角 x 坐标 */
-      sx: number,
+      sx?: number,
       /** 源图像的矩形选择框的左上角 y 坐标 */
-      sy: number,
+      sy?: number,
       /** 源图像的矩形选择框的宽度 */
-      sWidth: number,
+      sWidth?: number,
       /** 源图像的矩形选择框的高度 */
-      sHeight: number,
+      sHeight?: number,
     ): void;
     /** [CanvasContext.fill()](CanvasContext.fill.md)
 *

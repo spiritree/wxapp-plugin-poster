@@ -1,0 +1,5 @@
+<view>
+  <canvas canvas-id="poster-canvas" class="poster-canvas" hidden="{{!showCanvas}}" 
+    style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"
+  />
+</view>

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "./node_modules/typescript/bin/tsc -w",
     "compile": "./node_modules/typescript/bin/tsc",
-    "tsc": "node ./node_modules/typescript/lib/tsc.js"
+    "build": "node ./node_modules/typescript/lib/tsc.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
   },
   "homepage": "https://github.com/spiritree/wxapp-plugin-poster#readme",
   "files": [
-    "miniprogram_dist"
+    "plugin"
   ],
   "devDependencies": {
     "typescript": "^3.3.3333"
