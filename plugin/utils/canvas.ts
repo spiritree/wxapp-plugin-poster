@@ -27,12 +27,17 @@ export function drawRoundImage({ ctx, img, x, y, r }: IdrawRoundImage): void {
 
 export interface IfillMultiLineText {
   ctx: wx.CanvasContext
+  text: string
   x: number
   y: number
   maxWidth: number
-  text: string
-  bold: boolean
+  baseLine: 'top' | 'bottom' | 'middle' | 'normal'
+  textAlign: 'left' | 'center' | 'right'
+  fontStyle: 'normal' | 'italic' | 'oblique'
+  fontWeight: 'normal' | 'bold'
   fontSize: number
+  fontFamily: string
+  color: string
   // 下一行相对于上一行的额外路径
   paddingTop: number
   // 第一行的X坐标
@@ -41,22 +46,30 @@ export interface IfillMultiLineText {
 
 export function fillmultiLineText({
   ctx,
+  text,
   x,
   y,
   maxWidth,
-  text,
-  bold = false,
+  baseLine = 'top',
+  textAlign = 'left',
+  fontStyle = 'normal',
+  fontWeight = 'normal',
   fontSize,
+  fontFamily = 'sans-serif',
+  color,
   paddingTop = 0,
   firstLineX
 }: IfillMultiLineText) {
+  ctx.save()
+
   let isSingle = true
-  let finalHeight = 0
+  let finalY = 0
   if (firstLineX === undefined) firstLineX = x
 
-  bold
-    ? (ctx.font = `normal bold ${fontSize}px sans-serif`)
-    : (ctx.font = `normal normal ${fontSize}px sans-serif`)
+  ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`
+  ctx.setFillStyle(color)
+  ctx.setTextBaseline(baseLine)
+  ctx.setTextAlign(textAlign)
 
   let textArr = text.split('')
   let singleLine = ''
@@ -85,10 +98,10 @@ export function fillmultiLineText({
 
     ctx.fillText(text, textX, textY)
 
-    finalHeight =
-      y + paddingTop + (i + 1) * (Math.ceil(fontSize / 2) + fontSize)
+    finalY = y + paddingTop + (i + 1) * (Math.ceil(fontSize / 2) + fontSize)
   })
-  return finalHeight
+  ctx.restore()
+  return finalY
 }
 
 export interface IroundRect {
@@ -132,78 +145,41 @@ export function drawRoundRect({
 
 export interface IfillText {
   ctx: wx.CanvasContext
-  txt: string
+  text: string
   x: number
   y: number
-  bold: boolean
+  baseLine: 'top' | 'bottom' | 'middle' | 'normal'
+  textAlign: 'left' | 'center' | 'right'
+  fontStyle: 'normal' | 'italic' | 'oblique'
+  fontWeight: 'normal' | 'bold'
   fontSize: number
+  fontFamily: string
   color: string
   returnWidth: boolean
 }
 
-/**
- * 画普通文字
- * @export fillText
- * @param {*} ctx
- * @param {*} x
- * @param {*} y
- * @param {*} width
- * @param {*} height
- * @param {*} bold
- * @param {*} fontSize
- * @param {*} color
- * @param {*} returnWidth
- */
 export function fillText({
   ctx,
-  txt,
+  text,
   x,
   y,
-  bold = false,
+  baseLine = 'top',
+  textAlign = 'left',
+  fontStyle = 'normal',
+  fontWeight = 'normal',
   fontSize,
+  fontFamily = 'sans-serif',
   color,
   returnWidth = false
 }: IfillText) {
+  ctx.save()
+  ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`
   ctx.setFillStyle(color)
-  let boldFlag = bold ? 'bold' : 'normal'
-  ctx.font = `normal ${boldFlag} ${fontSize}px sans-serif`
-  ctx.fillText(txt, x, y)
+  ctx.setTextBaseline(baseLine)
+  ctx.setTextAlign(textAlign)
+  ctx.fillText(text, x, y)
+  ctx.restore()
   if (returnWidth) {
-    return ctx.measureText(txt).width
+    return ctx.measureText(text).width
   }
 }
-
-/**
- * 画cover效果的背景图（IOS无效）
- * @export drawCoverImage
- * @param {*} ctx
- * @param {*} bg
- * @param {*} bgWidth
- * @param {*} bgHeight
- * @param {*} canvasWidth
- * @param {*} canvasHeight
- */
-// export function drawCoverImage({
-//   ctx,
-//   bg,
-//   bgWidth,
-//   bgHeight,
-//   canvasWidth,
-//   canvasHeight
-// }) {
-//   const imageRatio = bgWidth / bgHeight
-//   const canvasRatio = canvasWidth / canvasHeight
-//   let sx, sy, sHeight, sWidth
-//   if (imageRatio < canvasRatio) {
-//     sWidth = bgWidth
-//     sHeight = sWidth / canvasRatio
-//     sx = 0
-//     sy = (bgHeight - sHeight) / 2
-//   } else {
-//     sHeight = bgHeight
-//     sWidth = bgHeight * canvasRatio
-//     sy = 0
-//     sx = (bgWidth - sWidth) / 2
-//   }
-//   ctx.drawImage(bg, sx, sy, sWidth, sHeight, 0, 0, canvasWidth, canvasHeight)
-// }
