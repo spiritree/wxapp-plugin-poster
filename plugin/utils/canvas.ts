@@ -183,3 +183,33 @@ export function fillText({
     return ctx.measureText(text).width
   }
 }
+
+export interface IdrawLine {
+  ctx: wx.CanvasContext
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+  lineWidth: number
+  color: string
+}
+
+export function drawLine({
+  ctx,
+  startX,
+  startY,
+  endX,
+  endY,
+  lineWidth,
+  color
+}: IdrawLine) {
+  ctx.save()
+  ctx.setStrokeStyle(color)
+  ctx.setLineWidth(lineWidth)
+  ctx.beginPath()
+  ctx.moveTo(startX, startY)
+  ctx.lineTo(endX, endY)
+  ctx.stroke()
+  ctx.closePath()
+  ctx.restore()
+}

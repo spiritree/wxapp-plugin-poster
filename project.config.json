@@ -1,8 +1,12 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"pluginRoot": "plugin/",
-	"compileType": "plugin",
-	"setting": {},
+	"compileType": "miniprogram",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
 	"appid": "wx5975152c3c635372",
 	"projectname": "wxapp-plugin-poster",
 	"simulatorType": "wechat",

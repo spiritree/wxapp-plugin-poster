@@ -5,3 +5,7 @@
   transform: translate3d(100%, 0, 0);
   z-index: 1000；
 }
+
+.poster-canvas.debug {
+  transform: none !important
+}

@@ -1,6 +1,6 @@
 <view>
-  <canvas canvas-id="poster-canvas" class="poster-canvas" hidden="{{!showCanvas}}" 
+  <canvas canvas-id="poster-canvas" class="poster-canvas debug" hidden="{{!showCanvas}}" posterConfig="{{posterConfig}}"
     style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"
   />
-  <button>生成</button>
+  <!-- <button>生成</button> -->
 </view>
